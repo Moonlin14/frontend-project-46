@@ -1,16 +1,20 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { cwd } from 'process';
 import _ from 'lodash';
+import parser from './parser.js'
 
-const parse = (path) => {
-  const pathResolve = resolve(path);
-  const result = readFileSync(pathResolve, 'utf8')
-  return JSON.parse(result);
+const getFileContent = (path) => {
+  const pathResolve = resolve(cwd(), path);
+  const fileContent = readFileSync(pathResolve, 'utf8')
+  const extencion = pathResolve.split('.')
+  const result = parser(fileContent, extencion[1])
+  return result;
 }
 
 export default (filepath1, filepath2) => {
-  const data1 = Object.entries(parse(filepath1));
-  const data2 = Object.entries(parse(filepath2));
+  const data1 = Object.entries(getFileContent(filepath1));
+  const data2 = Object.entries(getFileContent(filepath2));
   const intersection = _.intersectionWith(data1, data2, _.isEqual)
   const resultArr = [...intersection];
 
@@ -29,5 +33,7 @@ export default (filepath1, filepath2) => {
   }
 
   const result = Object.fromEntries(resultArr);
-  console.log(result)
+  const sortedResult = _.sortBy(result)
+ 
+  console.log(JSON.stringify(result, ' ', 2).replace(/"([^"]+)":/g, '$1:'))
 }
