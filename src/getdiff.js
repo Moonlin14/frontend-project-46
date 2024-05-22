@@ -32,8 +32,20 @@ export default (filepath1, filepath2) => {
     }
   }
 
-  const result = Object.fromEntries(resultArr);
-  const sortedResult = _.sortBy(result)
- 
+  const sortedResult = resultArr.sort((a, b) => {
+    const aSplit = a[0].startsWith('+') ? a[0].split('+ ') : a[0].split('- ')
+    const bSplit = b[0].startsWith('+') ? b[0].split('+ ') : b[0].split('- ')
+
+    if (aSplit[1] > bSplit[1]) {
+      return 1;
+    } else if (aSplit[1] < bSplit[1]) {
+      return -1;
+    } else {
+      return 0;
+    }
+
+  })
+  const result = Object.fromEntries(sortedResult);
+
   console.log(JSON.stringify(result, ' ', 2).replace(/"([^"]+)":/g, '$1:'))
 }
