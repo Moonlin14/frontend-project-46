@@ -2,18 +2,25 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "[![Actions Status](https://github.com/Moonlin14/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Moonlin14/frontend-project-46/actions)",
-  "main": "gendiff.js",
+  "description": "Console-based app for generating diff between config files. Supported formats: JSON, YAML.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "author": "Данил Сидельников",
+  "author": "Danil Sidelnikov",
   "license": "ISC",
+  "bin": {
+    "gendiff": "./bin/index.js"
+  },
   "dependencies": {
-    "commander": "^12.0.0",
-    "eslint": "^9.3.0",
-    "jest": "^29.7.0",
+    "commander": "^12.1.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
+    "jest": "^29.7.0"
   }
 }
