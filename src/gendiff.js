@@ -16,29 +16,28 @@ export default (filepath1, filepath2) => {
   const data2 = getFileContent(filepath2);
 
   const tree = treeBuilder(data1, data2)
-
-  const result = (tree) => {
-    const res = []
-    
-    for (const obj of tree) {
-      const { key, value, type } = obj;
-      if (obj[type] === 'unchanged') {
-        res.push([obj[key], obj[value]])
-      } else if (obj[type] === 'deleted') {
-        res.push([`- ${obj[key]}`, obj[value]]);
-      } else if (obj[type] === 'added') {
-        res.push([`+ ${obj[key]}`, obj[value]])
-      }
-    }
-    return res;
-  }
-
-  const hi = result(tree);
-  console.log(hi);
   
-  const res = Object.fromEntries(result(tree));
+  const cb = (acc, obj) => {
 
-  return JSON.stringify(res, ' ', 2)
+    if (obj.type === 'deleted') {
+      acc[`- ${obj.key}`] = obj.value;
+    }
+    if (obj.type === 'added') {
+     acc[`+ ${obj.key}`] = obj.value;
+    }  
+    if (obj.type === 'changed') {
+    acc[`- ${obj.key}`] = obj.value1, acc[`+ ${obj.key}`] = obj.value2;
+    }
+    if (obj.type === 'unchanged') {
+    acc[`  ${obj.key}`] = obj.value;
+    }
+  
+    return acc;
+  }
+  
+  const result = tree.reduce(cb, {})
+
+  return JSON.stringify(result, ' ', 2)
   .replace(/"([^"]+)":/g, '$1:')
   .replaceAll(',', '')
 }
