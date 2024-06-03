@@ -3,6 +3,7 @@ import { resolve, extname } from 'path';
 import { cwd } from 'process';
 import treeBuilder from './treeBuilder.js';
 import parser from './parser.js';
+import stylish from './formatters/stylish.js'
 
 const getFileContent = (path) => {
   const pathResolve = resolve(cwd(), path);
@@ -17,27 +18,32 @@ export default (filepath1, filepath2) => {
 
   const tree = treeBuilder(data1, data2)
   
-  const cb = (acc, obj) => {
+return stylish(tree)
 
-    if (obj.type === 'deleted') {
-      acc[`- ${obj.key}`] = obj.value;
-    }
-    if (obj.type === 'added') {
-     acc[`+ ${obj.key}`] = obj.value;
-    }  
-    if (obj.type === 'changed') {
-    acc[`- ${obj.key}`] = obj.value1, acc[`+ ${obj.key}`] = obj.value2;
-    }
-    if (obj.type === 'unchanged') {
-    acc[`  ${obj.key}`] = obj.value;
-    }
-  
-    return acc;
-  }
-  
-  const result = tree.reduce(cb, {})
+  // const cb = (acc, obj) => {
 
-  return JSON.stringify(result, ' ', 2)
-  .replace(/"([^"]+)":/g, '$1:')
-  .replaceAll(',', '')
+  //   if (obj.type === 'nested') {
+  //     acc[`  ${obj.key}`] = [...obj.children].reduce(cb, {})
+  //   }
+  //   if (obj.type === 'deleted') {
+  //     acc[`- ${obj.key}`] = obj.value;
+  //   }
+  //   if (obj.type === 'added') {
+  //    acc[`+ ${obj.key}`] = obj.value;
+  //   }  
+  //   if (obj.type === 'changed') {
+  //   acc[`- ${obj.key}`] = obj.value1, acc[`+ ${obj.key}`] = obj.value2;
+  //   }
+  //   if (obj.type === 'unchanged') {
+  //   acc[`  ${obj.key}`] =  obj.value;
+  //   }
+  
+  //   return acc;
+  // }
+  
+  // const result = tree.reduce(cb, {})
+
+  // return JSON.stringify(result, ' ', 2)
+  // .replace(/"([^"]+)":/g, '$1:')
+  // .replaceAll(',', '')
 }
