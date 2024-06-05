@@ -1,8 +1,7 @@
 import _ from "lodash";
 
 const treeBuilder = (data1, data2) => {
-  const arr = _.union(Object.keys(data1), Object.keys(data2))
-  const sortedKeys = _.sortBy(arr)
+  const sortedKeys = _.sortBy(Object.keys({ ...data1, ...data2 }));
   return sortedKeys.map((key) => {
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
       return { key, type: 'nested', children: treeBuilder(data1[key], data2[key]) };
