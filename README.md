@@ -8,7 +8,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7c52ab3556b7dc37ba2d/test_coverage)](https://codeclimate.com/github/Moonlin14/frontend-project-46/test_coverage)
 
 # Проект "Вычислитель отличий":
-Gendif- это приложение которое выводит разницу между структурой двух файлов. 
+Gendiff- это приложение которое выводит разницу между структурой двух файлов. 
 Поддерживаются файлы форматов JSON, YAML.
 # Установка 
 ```

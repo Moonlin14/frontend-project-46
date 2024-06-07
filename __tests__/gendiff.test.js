@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { readFileSync } from 'fs';
 import gendiff from '../src/gendiff.js';
+import { describe, expect, test } from 'jest'
 
 const _filename = fileURLToPath(import.meta.url)
 const _dirname = dirname(_filename);
