@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { readFileSync } from 'fs';
