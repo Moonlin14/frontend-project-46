@@ -12,13 +12,13 @@ const iter = (tree, key = []) => {
     const currentPath = keys.join('.');
     switch (node.type) {
       case 'added':
-        return `Property ${currentPath} was added with value: ${stringify(node.value)}`;
+        return `Property '${currentPath}' was added with value: ${stringify(node.value)}`;
       case 'deleted':
-        return `Property ${currentPath} was removed`;
+        return `Property '${currentPath}' was removed`;
       case 'unchanged':
         return null;
       case 'changed':
-        return `Property ${currentPath} was update. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
+        return `Property '${currentPath}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
       case 'nested':
         return iter(node.children, [currentPath]);
       default:
