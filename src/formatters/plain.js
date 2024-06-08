@@ -1,14 +1,14 @@
-import _ from 'lodash'
+import _ from 'lodash';
 
 const stringify = (value) => {
   if (_.isObject(value)) return '[complex value]';
   if (typeof value === 'string') return `'${value}'`;
   return value;
-} 
+};
 
 const iter = (tree, key = []) => {
   const result = tree.map((node) => {
-    const keys = [...key, `${node.key}`]
+    const keys = [...key, `${node.key}`];
     const currentPath = keys.join('.');
     switch (node.type) {
       case 'added':
@@ -22,10 +22,10 @@ const iter = (tree, key = []) => {
       case 'nested':
         return iter(node.children, [currentPath]);
       default:
-       throw new Error(`This type does not exist: ${node.type}`);
-      };
-  })
-  return result.filter(Boolean).join('\n')
-} 
+        throw new Error(`This type does not exist: ${node.type}`);
+    }
+  });
+  return result.filter(Boolean).join('\n');
+};
 
 export default (tree) => iter(tree, []);

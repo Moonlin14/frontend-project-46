@@ -1,16 +1,16 @@
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import { cwd } from 'process';
-import treeBuilder from './treeBuilder.js';
-import parser from './parser.js';
-import getFormat from './formatters/index.js'
+import treeBuilder from './treeBuilder';
+import parser from './parser';
+import getFormat from './formatters/index';
 
 const getFileContent = (path) => {
   const pathResolve = resolve(cwd(), path);
-  const fileContent = readFileSync(pathResolve, 'utf8')
+  const fileContent = readFileSync(pathResolve, 'utf8');
   const extencion = extname(pathResolve);
   return parser(fileContent, extencion);
-}
+};
 
 export default (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = getFileContent(filepath1);
