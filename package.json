@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Console-based app for generating diff between config files. Supported formats: JSON, YAML.",
-  "main": "src/gendiff.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest"
   },
