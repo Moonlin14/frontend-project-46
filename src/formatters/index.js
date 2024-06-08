@@ -10,7 +10,6 @@ const getFormat = (tree, format) => {
     case 'json':
       return JSON.stringify(tree, null, 2);
     default: throw new Error(`Unknown format: ${format}`);
-  };
+  }
 };
-
 export default getFormat;

@@ -20,6 +20,8 @@
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "eslint": "^9.4.0",
+    "eslint-plugin-airbnb": "^0.0.1-security",
+    "eslint-plugin-airbnb-base": "^0.0.1-security",
     "eslint-plugin-jest": "^28.6.0",
     "globals": "^15.4.0",
     "jest": "^29.7.0",

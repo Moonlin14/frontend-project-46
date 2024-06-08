@@ -1,5 +1,6 @@
 env:
   node: true
+  jest: true
   es2021: true
 extends: airbnb-base
 parserOptions:
@@ -10,8 +11,8 @@ ignorePatterns:
 rules:
   no-underscore-dangle: 'off'
   no-console: 0
-  no-prototype-builtins: 'off'
-  import/extensions:
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
+  import/extensions: 
     - error
     - ignorePackages
     - js: always

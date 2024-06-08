@@ -10,5 +10,5 @@ export default (fileContent, format) => {
       return yaml.load(fileContent);
     default:
       throw new Error(`Format ${format} - is incorrect`);
-  }
+  };
 };
