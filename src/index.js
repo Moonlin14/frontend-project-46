@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import { cwd } from 'process';
-import treeBuilder from './treeBuilder';
-import parser from './parser';
-import getFormat from './formatters/index';
+import treeBuilder from './treeBuilder.js';
+import parser from './parser.js';
+import getFormat from './formatters/index.js';
 
 const getFileContent = (path) => {
   const pathResolve = resolve(cwd(), path);

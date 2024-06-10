@@ -1,11 +1,11 @@
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { readFileSync } from 'fs';
-import gendiff from '../src/index';
+import gendiff from '../src/index.js';
 
-const _filename = fileURLToPath(import.meta.url);
-const _dirname = dirname(_filename);
-const getFixturePath = (filename) => join(_dirname, '..', '__fixtures__', filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const expectedStylish = readFile('expectedStylish.txt');
@@ -22,5 +22,4 @@ describe('gendiff', () => {
     expect(gendiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
     expect(gendiff(filepath1, filepath2, 'json')).toEqual(expectedJSON);
   });
-
 });
